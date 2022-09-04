@@ -28,81 +28,6 @@ params.hdf_key = 'my_key'
 # params.output_dir = '../Datasets/full_datasets/ids2018'
 params.output_dir = '../Datasets/dummy'
 
-# KDD99 params
-params.kdd99_10_percent_dataset_file = '../Datasets/KDD_99/training_set/kddcup.data_10_percent_corrected'
-params.kdd99_full_train_dataset_file = '../Datasets/KDD_99/training_set/kddcup.data.corrected'
-params.kdd99_full_test_dataset_file = '../Datasets/KDD_99/test_set/corrected'
-params.kdd99_map_to_five_classes = True
-
-params.kdd_five_class_map = {
-    'back': 'dos',
-    'buffer_overflow': 'u2r',
-    'ftp_write': 'r2l',
-    'guess_passwd': 'r2l',
-    'imap': 'r2l',
-    'ipsweep': 'probe',
-    'land': 'dos',
-    'loadmodule': 'u2r',
-    'multihop': 'r2l',
-    'neptune': 'dos',
-    'nmap': 'probe',
-    'perl': 'u2r',
-    'phf': 'r2l',
-    'pod': 'dos',
-    'portsweep': 'probe',
-    'rootkit': 'u2r',
-    'satan': 'probe',
-    'smurf': 'dos',
-    'spy': 'r2l',
-    'teardrop': 'dos',
-    'warezclient': 'r2l',
-    'warezmaster': 'r2l',
-    # Following attack types are only in the test set
-    # Source: Feature Selection for Intrusion Detection System Using Ant Colony Optimization
-    'mscan': 'probe',
-    'apache2': 'dos',
-    'processtable': 'dos',
-    'snmpguess': 'u2r',
-    'saint': 'probe',
-    'mailbomb': 'dos',
-    'snmpgetattack': 'r2l',
-    'httptunnel': 'u2r',
-    'named': 'r2l',
-    'ps': 'u2r',
-    'sendmail': 'r2l',
-    'xterm': 'u2r',
-    'xlock': 'r2l',
-    'xsnoop': 'r2l',
-    'udpstorm': 'dos',
-    'sqlattack': 'u2r',
-    'worm': 'u2r',
-}
-
-# NSL_KDD params
-params.nsl_train_file = '../Datasets/NSL_KDD/KDDTrain+.txt'
-# params.nsl_test_file = '../Datasets/NSL_KDD/KDDTest+.txt'
-params.nsl_test_file = '../Datasets/NSL_KDD/KDDTest-21.txt'
-params.nsl_map_to_five_classes = True
-
-# IDS 2017 params
-params.ids2017_small = False
-params.ids2017_datasets_dir = '../Datasets/CIC_IDS_2017/MachineLearningCSV/MachineLearningCVE'
-params.ids2017_files_list = [
-                'Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv',
-                'Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv',
-                'Friday-WorkingHours-Morning.pcap_ISCX.csv',
-                'Monday-WorkingHours.pcap_ISCX.csv',
-                'Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv',
-                'Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv',   # Issue with flows file
-                'Tuesday-WorkingHours.pcap_ISCX.csv',
-                'Wednesday-workingHours.pcap_ISCX.csv'
-                ]
-
-params.ids2017_hist_num_bins = 10000
-
-params.ids2017_flows_dir = '../Datasets/CIC_IDS_2017/GeneratedLabelledFlows/TrafficLabelling'
-params.ids2017_flow_seqs_max_flow_seq_length = 100
-params.ids2017_flow_seqs_max_flow_duration_secs = 3
 
 # IDS 2018 params
 params.ids2018_datasets_dir = '../Datasets/CIC_IDS_2018'
@@ -762,19 +687,11 @@ def main():
 
     # --------------------------------------
 
-    # prepare_kdd99_small_datasets(params)
-
-    # prepare_kdd99_full_datasets(params)
-
-    prepare_nsl_kdd_datasets(params)
-
-    # prepare_ids2017_datasets(params)  # Small subset vs. full is controlled by config flag
-
 
     # Following 3 are for preparing the IDS 2018 dataset (20% subset)
-    # prepare_ids2018_datasets_stage_1(params)
-    # prepare_ids2018_datasets_stage_2(params)
-    # prepare_ids2018_shrink_dataset(params)
+    prepare_ids2018_datasets_stage_1(params)
+    prepare_ids2018_datasets_stage_2(params)
+    prepare_ids2018_shrink_dataset(params)
 
     logging.info('Data preparation complete')
 
