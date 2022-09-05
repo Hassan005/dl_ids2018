@@ -683,8 +683,6 @@ def shrink_dataset(X_info_df, y_df, shrink_to_rate):
 
 def main():
     initial_setup(params.output_dir, params)
-    add_additional_items_to_dict(params.kdd_five_class_map, '.')
-
     # --------------------------------------
 
 
